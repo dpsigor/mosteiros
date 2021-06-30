@@ -1,3 +1,11 @@
-<div *ngFor="let m of mosteiros">
+<div>
+  <div class="mainquerycontainer">
+    <div style="margin-right: 1rem">
+      Pesquisa
+    </div>
+    <input type="text" [formControl]="queryInput" />
+  </div>
+</div>
+<div *ngFor="let m of selectedMosteiros">
   <mosteiros-mosteiro-card [mosteiro]="m"></mosteiros-mosteiro-card>
 </div>

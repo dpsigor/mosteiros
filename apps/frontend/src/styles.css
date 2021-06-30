@@ -1,5 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+body, ul, li  { margin: 0; padding: 0; }
+li { list-style: none; }
+p, h1, h2, h3, h4, h5, h6 { margin-top: 0; }
+a { text-decoration: none; }
+input { border-style: none; background: transparent; outline: none; }
+button { padding: 0; background: none; border: none; outline: none; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -10,4 +18,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .t1 {
   font-size: 1.25rem;
   font-weight: 500;
+}
+
+.mainquerycontainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 0.7rem 1rem 0.8rem;
+  background: #CCC;
+}
+
+.mainquerycontainer input {
+  flex-grow: 1;
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  vertical-align: middle;
 }
