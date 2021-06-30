@@ -1,18 +1,37 @@
+import { IMosteiro } from '@mosteiros/core';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export type MosteiroDocument = Mosteiro & Document;
 
 @Schema()
-export class Mosteiro {
+export class Mosteiro implements IMosteiro {
   @Prop()
-  name: string;
+  nome: string;
 
   @Prop()
-  age: number;
+  logradouro: string;
 
   @Prop()
-  breed: string;
+  bairro: string;
+
+  @Prop()
+  cep: string;
+
+  @Prop()
+  cidade: string;
+
+  @Prop()
+  emails: string[];
+
+  @Prop()
+  telefones: string[];
+
+  @Prop()
+  sites: string[];
+
+  @Prop()
+  foto: string;
 }
 
 export const MosteiroSchema = SchemaFactory.createForClass(Mosteiro);

@@ -1,3 +1,4 @@
+import { IMosteiro } from '@mosteiros/core';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
@@ -10,13 +11,13 @@ import { map, take } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   title = 'frontend';
-  msg = '';
+  mosteiros: IMosteiro[] = [];
 
   constructor(private readonly http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<{ message: string }>(environment.apiUrl)
+    this.http.get<{ mosteiros: IMosteiro[] }>(`${environment.apiUrl}/mosteiros`)
       // .pipe(take(1), map(cur => cur.message))
-      .subscribe(res => this.msg = res.message);
+      .subscribe(res => this.mosteiros = res.mosteiros);
   };
 }
