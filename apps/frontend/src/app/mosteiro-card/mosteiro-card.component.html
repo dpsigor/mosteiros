@@ -1,0 +1,28 @@
+<mat-card *ngIf="mosteiro" class="mosteirocard">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>{{ mosteiro.nome }}</mat-card-title>
+    <mat-card-subtitle>{{ address }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image *ngIf="mosteiro.foto" [src]="mosteiro.foto">
+  <mat-card-content>
+    <p class="t1" *ngIf="(mosteiro.telefones && mosteiro.telefones.length) || (mosteiro.emails && mosteiro.emails.length)">Contato</p>
+    <p *ngFor="let t of mosteiro.telefones">
+      {{ t }}
+    </p>
+    <p *ngFor="let e of mosteiro.emails">
+      {{ e }}
+    </p>
+    <p class="t1">Sítios</p>
+    <p *ngFor="let s of mosteiro.sites">
+      {{ s }}
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

@@ -31,6 +31,9 @@ export class Mosteiro implements IMosteiro {
   sites: string[];
 
   @Prop()
+  uf: string;
+
+  @Prop()
   foto: string;
 }
 

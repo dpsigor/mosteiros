@@ -12,6 +12,7 @@ export class AppService implements OnModuleInit {
 
   async onModuleInit() {
     try {
+      // await this.mosteiroModel.deleteMany({});
       const notEmpty = await this.mosteiroModel.findOne();
       if (notEmpty) return;
       const rows = mosteirosCSV.split('\n');
@@ -26,10 +27,11 @@ export class AppService implements OnModuleInit {
         m.bairro = d[2] || '';
         m.cep = d[3] || '';
         m.cidade = d[4] || '';
-        m.emails = d[5] && d[5].split(' ').filter(x => !!x) || [];
-        m.telefones = d[6] && d[6].split(' ').filter(x => !!x) || [];
-        m.sites = d[7] && d[7].split(' ').filter(x => !!x) || [];
-        m.foto = d[8] || '';
+        m.emails = d[5] && d[5].split(' ').filter(x => !!x && x.length > 5) || [];
+        m.telefones = d[6] && d[6].split(' ').filter(x => !!x && x.length > 5) || [];
+        m.sites = d[7] && d[7].split(' ').filter(x => !!x && x.length > 5).map(s => s.replace(/\?.*/, '')) || [];
+        m.uf =  d[8] || '';
+        m.foto = d[9] || '';
         mosteiros.push(m);
       });
       const res = await this.mosteiroModel.insertMany(mosteiros);

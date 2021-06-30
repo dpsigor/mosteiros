@@ -1,6 +1,3 @@
-<mat-card>alou</mat-card>
-<ul>
-  <li *ngFor="let m of mosteiros">
-    {{ m.nome }}
-  </li>
-</ul>
+<div *ngFor="let m of mosteiros">
+  <mosteiros-mosteiro-card [mosteiro]="m"></mosteiros-mosteiro-card>
+</div>

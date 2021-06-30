@@ -1,5 +1,4 @@
 export const mosteirosCSV = `
-Mosteiro/Convento;RUA  ;Bairro ;CEP;CIDADE;E-mail;Telefone;Sítio;UF
 Carmelo Nossa Senhora do Carmo;Av. Loureiro da Silva, 1735;Cidade Baixa;90050-240 ;Porto Alegre; mosteirodocarmopoa@gmail.com;(51)3224-0412 / (51)2112-8179;https://irmascarmelitas.com.br/index.php?pr=conteudo&mn_codigo=14&ct_codigo=133;RS
 Mosteiro São Damião - Irmãs Clarissas;R. Vicente da Fontoura, 498 ;Santana;90640-000;Porto Alegre;clarissaspoa@gmail.com;(51)3223-4464;https://www.clarissas.net.br/index.php;RS
 Convento  São Boaventura;Av. Ipiranga, 601;Daltro Filho;95885-000;Imigrante;conventofranciscano@hotmail.com;(51)3754-0376;****;RS

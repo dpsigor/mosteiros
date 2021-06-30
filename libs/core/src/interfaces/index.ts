@@ -7,5 +7,6 @@ export interface IMosteiro {
   emails: string[];
   telefones: string[];
   sites: string[];
+  uf: string;
   foto: string;
 }
