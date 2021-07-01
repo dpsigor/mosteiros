@@ -37,10 +37,10 @@ export class Mosteiro implements IMosteiro {
   foto: string;
 
   @Prop()
-  lng: number;
+  lat: number;
 
   @Prop()
-  lat: number;
+  lng: number;
 }
 
 export const MosteiroSchema = SchemaFactory.createForClass(Mosteiro);

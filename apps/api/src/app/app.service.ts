@@ -15,6 +15,25 @@ export class AppService implements OnModuleInit {
   async onModuleInit() {
     try {
       // await this.mosteiroModel.deleteMany({});
+      //
+      // const docs = await this.mosteiroModel.find();
+      // let csv = '';
+      // for (const doc of docs) {
+      //   csv += doc.nome + ';';
+      //   csv += doc.logradouro + ';';
+      //   csv += doc.bairro + ';';
+      //   csv += doc.cep + ';';
+      //   csv += doc.cidade + ';';
+      //   csv += doc.emails.join(' ') + ';';
+      //   csv += doc.telefones.join(' ') + ';';
+      //   csv += doc.sites.join(' ') + ';';
+      //   csv += doc.uf + ';';
+      //   csv += doc.foto + ';';
+      //   csv += doc.lat + ';';
+      //   csv += doc.lng + '\n';
+      // }
+      // writeFileSync('./mosteiros.csv', csv)
+      //
       const notEmpty = await this.mosteiroModel.findOne();
       if (notEmpty) return;
       const rows = mosteirosCSV.split('\n');
@@ -39,7 +58,7 @@ export class AppService implements OnModuleInit {
         mosteiros.push(m);
       });
       const res = await this.mosteiroModel.insertMany(mosteiros);
-      console.log(res);
+      console.log(`Inseriu ${res.length} documentos`);
     } catch (e) {
       console.error(e);
     }
