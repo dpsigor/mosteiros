@@ -9,4 +9,6 @@ export interface IMosteiro {
   sites: string[];
   uf: string;
   foto: string;
+  lng: number;
+  lat: number;
 }

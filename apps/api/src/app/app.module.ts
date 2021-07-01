@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, HttpModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { environment } from '../environments/environment';
@@ -11,7 +11,8 @@ import { Mosteiro, MosteiroSchema } from './Models/Mosteiro';
     MongooseModule.forRoot(environment.dbUri),
     MongooseModule.forFeature([
       { name: Mosteiro.name, schema: MosteiroSchema }
-    ])
+    ]),
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  dbUri: 'mongodb://localhost/mosteiros',
+  dbUri: 'mongodb://localhost:8082/mosteiros',
 };

@@ -1,13 +1,15 @@
 import { Model } from 'mongoose';
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { HttpService, Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Mosteiro, MosteiroDocument } from './Models/Mosteiro';
 import { mosteirosCSV } from '@mosteiros/core';
+import { writeFileSync } from 'fs';
 
 @Injectable()
 export class AppService implements OnModuleInit {
   constructor(
     @InjectModel('Mosteiro') private readonly mosteiroModel: Model<Mosteiro>,
+    private readonly httpService: HttpService,
   ) {}
 
   async onModuleInit() {
@@ -31,7 +33,9 @@ export class AppService implements OnModuleInit {
         m.telefones = d[6] && d[6].split(' ').filter(x => !!x && x.length > 5) || [];
         m.sites = d[7] && d[7].split(' ').filter(x => !!x && x.length > 5).map(s => s.replace(/\?.*/, '')) || [];
         m.uf =  d[8] || '';
-        m.foto = d[9] || '';
+        if (d[9]) m.lat = parseFloat(d[9]);
+        if (d[10]) m.lng = parseFloat(d[10]);
+        m.foto = d[11] || '';
         mosteiros.push(m);
       });
       const res = await this.mosteiroModel.insertMany(mosteiros);
@@ -45,4 +49,30 @@ export class AppService implements OnModuleInit {
     const docs = await this.mosteiroModel.find();
     return docs;
   }
+
+  async cepToCoords(cep: string) {
+    const token = 'alou';
+    const url = 'https://www.cepaberto.com/api/v3/cep';
+    const options = {
+      headers: {'Authorization': `Token token=${token}`},
+      params: {
+        cep: cep.replace(/-/g, ''),
+      },
+    };
+    const res = await this.httpService.get<CepAbertoRes>(url, options).toPromise();
+    const lat = res.data.latitude;
+    const lng = res.data.longitude;
+  }
+}
+
+
+interface CepAbertoRes {
+  altitude: number;
+  cep: string,
+  latitude: string,
+  longitude: string,
+  logradouro: string,
+  bairro: string,
+  cidade: { ddd: number, ibge: string, nome: string },
+  estado: { sigla: string }
 }
