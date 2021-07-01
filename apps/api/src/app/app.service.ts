@@ -29,36 +29,40 @@ export class AppService implements OnModuleInit {
       //   csv += doc.sites.join(' ') + ';';
       //   csv += doc.uf + ';';
       //   csv += doc.foto + ';';
-      //   csv += doc.lat + ';';
-      //   csv += doc.lng + '\n';
+      //   const lat = doc.lat ? doc.lat.toLocaleString('pt-BR') + ';' : ';';
+      //   csv += lat;
+      //   const lng = doc.lng ? doc.lng.toLocaleString('pt-BR') + '\n' : '\n';
+      //   csv += lng;
       // }
-      // writeFileSync('./mosteiros.csv', csv)
+      // writeFileSync('./mosteiros.csv', csv, {
+      //   encoding: 'ascii'
+      // })
       //
-      const notEmpty = await this.mosteiroModel.findOne();
-      if (notEmpty) return;
-      const rows = mosteirosCSV.split('\n');
-      const mosteiros: Mosteiro[] = [];
-      rows.forEach(row => {
-        const raw = row.split(';');
-        const d = raw.map(r => r.trim());
-        const m = new Mosteiro();
-        m.nome = d[0] || '';
-        if (!m.nome) return;
-        m.logradouro = d[1] || '';
-        m.bairro = d[2] || '';
-        m.cep = d[3] || '';
-        m.cidade = d[4] || '';
-        m.emails = d[5] && d[5].split(' ').filter(x => !!x && x.length > 5) || [];
-        m.telefones = d[6] && d[6].split(' ').filter(x => !!x && x.length > 5) || [];
-        m.sites = d[7] && d[7].split(' ').filter(x => !!x && x.length > 5).map(s => s.replace(/\?.*/, '')) || [];
-        m.uf =  d[8] || '';
-        if (d[9]) m.lat = parseFloat(d[9]);
-        if (d[10]) m.lng = parseFloat(d[10]);
-        m.foto = d[11] || '';
-        mosteiros.push(m);
-      });
-      const res = await this.mosteiroModel.insertMany(mosteiros);
-      console.log(`Inseriu ${res.length} documentos`);
+      // const notEmpty = await this.mosteiroModel.findOne();
+      // if (notEmpty) return;
+      // const rows = mosteirosCSV.split('\n');
+      // const mosteiros: Mosteiro[] = [];
+      // rows.forEach(row => {
+      //   const raw = row.split(';');
+      //   const d = raw.map(r => r.trim());
+      //   const m = new Mosteiro();
+      //   m.nome = d[0] || '';
+      //   if (!m.nome) return;
+      //   m.logradouro = d[1] || '';
+      //   m.bairro = d[2] || '';
+      //   m.cep = d[3] || '';
+      //   m.cidade = d[4] || '';
+      //   m.emails = d[5] && d[5].split(' ').filter(x => !!x && x.length > 5) || [];
+      //   m.telefones = d[6] && d[6].split(' ').filter(x => !!x && x.length > 5) || [];
+      //   m.sites = d[7] && d[7].split(' ').filter(x => !!x && x.length > 5).map(s => s.replace(/\?.*/, '')) || [];
+      //   m.uf =  d[8] || '';
+      //   if (d[9]) m.lat = parseFloat(d[9]);
+      //   if (d[10]) m.lng = parseFloat(d[10]);
+      //   m.foto = d[11] || '';
+      //   mosteiros.push(m);
+      // });
+      // const res = await this.mosteiroModel.insertMany(mosteiros);
+      // console.log(`Inseriu ${res.length} documentos`);
     } catch (e) {
       console.error(e);
     }
