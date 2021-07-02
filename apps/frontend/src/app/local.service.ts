@@ -1,36 +1,23 @@
 import { Injectable } from '@angular/core';
-import { mosteirosCSV, IMosteiro, MosteiroJ } from '@mosteiros/core';
+import { IMosteiro, MosteiroJ } from '@mosteiros/core';
+import mosteiros from '../assets/mosteiros.json';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalService {
+
   mosteiros: MosteiroJ[] = [];
 
   getMosteiros(): MosteiroJ[] {
-    const ms = mosteirosCSV.split('\n').map(row => {
-      const raw = row.split(';');
-      const d = raw.map(r => r.trim());
-      if (!d[0]) return null;
-      const m: IMosteiro = {
-        nome: d[0],
-        logradouro: d[1] || '',
-        bairro: d[2] || '',
-        cep: d[3] || '',
-        cidade: d[4] || '',
-        emails: d[5] && d[5].split(' ').filter(x => !!x && x.length > 5) || [],
-        telefones: d[6] && d[6].split(' ').filter(x => !!x && x.length > 5) || [],
-        sites: d[7] && d[7].split(' ').filter(x => !!x && x.length > 5).map(s => s.replace(/\?.*/, '')) || [],
-        uf:  d[8] || '',
-        lat: parseFloat(d[9]),
-        lng: parseFloat(d[10]),
-        foto: d[11] || '',
-      }
-      return m;
-    });
-    for (const m of ms) {
-      if (m) this.mosteiros.push(this.fillResumo(m));
-    };
+    // mosteiros.forEach(obj => {
+    //   const m: IMosteiro = {
+    //     nome: obj.nome,
+    //     bairro: obj.bairro,
+
+    //   }
+    // })
+    this.mosteiros = mosteiros.map(m => this.fillResumo(m));
     return this.mosteiros;
   }
 

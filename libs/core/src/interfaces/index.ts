@@ -1,16 +1,16 @@
 export interface IMosteiro {
   nome: string;
-  logradouro: string;
-  bairro: string;
-  cep: string;
-  cidade: string;
-  emails: string[];
-  telefones: string[];
-  sites: string[];
-  uf: string;
-  foto: string;
-  lng: number;
-  lat: number;
+  logradouro: string | null;
+  bairro: string | null;
+  cep: string | null;
+  cidade: string | null;
+  emails: (string | null)[];
+  telefones: (string | null)[];
+  sites: (string | null)[];
+  uf: string | null;
+  foto: string | null;
+  lng: number | null;
+  lat: number | null;
 }
 
 interface hasResumo { resumo: string };
