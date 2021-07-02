@@ -1,8 +1,11 @@
-import { IMosteiro } from '@mosteiros/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GeneralService, MosteiroJ } from './general.service';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {
+  // GeneralService,
+  MosteiroJ,
+} from './general.service';
+// import { FirestoreService } from './firestore.service';
+import { LocalService } from './local.service';
+// import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -11,19 +14,24 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  mosteiroSubs: Subscription | null = null;
+  // mosteiroSubs: Subscription | null = null;
   mosteiros: MosteiroJ[] = [];
   selectedMosteiros: MosteiroJ[] = [];
   queryInput = new FormControl('');
 
-  constructor(private serv: GeneralService) {}
+  constructor(
+    // private serv: GeneralService,
+    // private serv: FirestoreService,
+    private serv: LocalService,
+  ) {}
 
   ngOnInit(): void {
-    this.mosteiroSubs = this.serv.getMosteirosListener().subscribe(ms => {
-      this.mosteiros = ms;
-      this.selectedMosteiros = ms;
-    });
-    this.serv.loadMosteiros();
+    this.mosteiros = this.serv.getMosteiros();
+    this.selectedMosteiros = this.mosteiros;
+    // this.mosteiroSubs = this.serv.mosteiros$.subscribe(ms => {
+    //   this.mosteiros = ms;
+    //   this.selectedMosteiros = ms;
+    // });
     this.queryInput.valueChanges.subscribe(q => {
       const query = q.toLowerCase().replace(/\s/g, '');
       this.updateMosteiros(query);
@@ -35,6 +43,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.mosteiroSubs) this.mosteiroSubs.unsubscribe();
+  //   if (this.mosteiroSubs) this.mosteiroSubs.unsubscribe();
   }
 }

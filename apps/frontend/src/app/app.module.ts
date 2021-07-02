@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MosteiroCardComponent } from './mosteiro-card/mosteiro-card.component';
+// import { AngularFireModule } from 'angularfire2';
+// import { AngularFirestoreModule } from 'angularfire2/firestore';
+// import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, MosteiroCardComponent],
@@ -19,6 +22,8 @@ import { MosteiroCardComponent } from './mosteiro-card/mosteiro-card.component';
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -20,6 +20,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-weight: 500;
 }
 
+.wordwrap {
+  word-wrap: break-word;
+}
+
 .mainquerycontainer {
   position: relative;
   display: flex;

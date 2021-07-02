@@ -7,14 +7,14 @@
   <img mat-card-image *ngIf="mosteiro.foto" [src]="mosteiro.foto">
   <mat-card-content>
     <p class="t1" *ngIf="(mosteiro.telefones && mosteiro.telefones.length) || (mosteiro.emails && mosteiro.emails.length)">Contato</p>
-    <p *ngFor="let t of mosteiro.telefones">
+    <p class="wordwrap" *ngFor="let t of mosteiro.telefones">
       {{ t }}
     </p>
-    <p *ngFor="let e of mosteiro.emails">
+    <p class="wordwrap" *ngFor="let e of mosteiro.emails">
       {{ e }}
     </p>
-    <p class="t1">Sítios</p>
-    <p *ngFor="let s of mosteiro.sites">
+    <p class="t1" *ngIf="mosteiro.sites && mosteiro.sites.length">Sítios</p>
+    <p class="wordwrap" *ngFor="let s of mosteiro.sites">
       {{ s }}
     </p>
     <p>
