@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { mosteirosCSV, IMosteiro } from '@mosteiros/core';
-import { MosteiroJ } from './general.service';
+import { mosteirosCSV, IMosteiro, MosteiroJ } from '@mosteiros/core';
 
 @Injectable({
   providedIn: 'root'

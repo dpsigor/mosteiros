@@ -12,3 +12,6 @@ export interface IMosteiro {
   lng: number;
   lat: number;
 }
+
+interface hasResumo { resumo: string };
+export type MosteiroJ = IMosteiro & hasResumo;
